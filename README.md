@@ -1,7 +1,7 @@
 # DGFEM Maxwell Equations
 
 Discontinuous Galerkin finite element method (DGFEM) for Maxwell Equations. Work in progress.
-Currenty, the 1D Maxwell equations for a single polarization are implemented:
+Currently, the 1D Maxwell equations for a single polarization are implemented:
 
 ![N|Solid](Maxwell_equations_1D.png)
 
@@ -11,7 +11,7 @@ Currenty, the 1D Maxwell equations for a single polarization are implemented:
 - numba
 - matplotlib
 
-## Biography
+## Bibliography
 
 Discontinuous Galerkin finite element method (DGFEM): 
 - J. S. Hesthaven and T. Warburton, Nodal Discontinuous Galerkin Methods: Algorithms, Analysis, and Applications. Springer, 2008.
