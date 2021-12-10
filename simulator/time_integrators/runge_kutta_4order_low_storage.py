@@ -1,6 +1,7 @@
 import numpy as np
 from ..numerical_flux import flux
 from ..util.LSERK4_coefficients import rk4a , rk4b , rk4c
+from ..detector import Detector
 
 """
 The main difference of LSRK4 with respect to the classical RK4 is that only one additional storage level for the k variables is required, thus reducing
@@ -28,6 +29,9 @@ def lserk4_integrator(sim, total_time, dt, boundary_index):
     k_Ex = np.zeros([sim.Np+1, sim.K])
     k_Hy = np.zeros([sim.Np+1, sim.K])
 
+    for detector in sim.detectors:
+        detector.init_detector(Nt, total_time)
+
     for iter in range(Nt):            
                
         for i in range(5):
@@ -39,3 +43,7 @@ def lserk4_integrator(sim, total_time, dt, boundary_index):
               
             sim.Ex = sim.Ex+rk4b[i]*k_Ex
             sim.Hy = sim.Hy+rk4b[i]*k_Hy
+
+
+        for detector in sim.detectors:
+            detector.measure_fields(sim.Ex, sim.Hy, iter)

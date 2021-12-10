@@ -6,7 +6,7 @@ from .time_integrators import euler_integrator, rk2_integrator, lserk4_integrato
 
 
 class Simulation1D:
-    def __init__(self, zpos_vertex, Np , ε, 𝜇 , σ, boundaries = 'perfect_conductor_boundaries'):
+    def __init__(self, zpos_vertex, Np , ε, 𝜇 , σ, boundaries = 'perfect_conductor_boundaries', detectors = []):
         
         self.Np = Np #polynomial order
         self.Vx = zpos_vertex # z position of the vertices of the elements
@@ -88,6 +88,11 @@ class Simulation1D:
             raise NotImplementedError(
                 f"{implemented_boundaries} has not been implemented. Use one of {implemented_boundaries}")
 
+        # -----------------------------------------------------------------
+
+        # Detectors
+        
+        self.detectors = detectors
 
 
 

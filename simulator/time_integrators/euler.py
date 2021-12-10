@@ -20,6 +20,10 @@ def euler_integrator(sim, total_time, dt, boundary_index):
     𝜇_ = np.outer(np.ones(sim.Np+1), sim.𝜇)
     J_ = np.outer(np.ones(sim.Np+1), sim.J)
 
+
+    for detector in sim.detectors:
+        detector.init_detector(Nt, total_time)
+
     for iter in range(Nt):            
         Flux = flux(sim.Ex, sim.Hy, sim.Np, sim.K, sim.ε, sim.𝜇, boundary_index)        
         # Extrapolate each element using flux F 
@@ -35,6 +39,10 @@ def euler_integrator(sim, total_time, dt, boundary_index):
         sim.Ex = Ex_new 
         sim.Hy = Hy_new
         
+
+        for detector in sim.detectors:
+            detector.measure_fields(sim.Ex, sim.Hy, iter)
+
 
         # This is the expensive loop that can be parallelized and how the compiled version should be implemented. 
         # The evaluation of each element k is independent
