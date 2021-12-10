@@ -2,7 +2,7 @@ import numpy as np
 from .polynomials.gll import gll
 from .polynomials.lagrange1st import lagrange1st
 import matplotlib.pyplot as plt
-from .time_integrators import euler_integrator
+from .time_integrators import euler_integrator, rk2_integrator, lserk4_integrator
 
 
 class Simulation1D:
@@ -97,16 +97,19 @@ class Simulation1D:
         self.Ex , self.Hy = initial_fields_function(self.z)
 
                 
-    def run(self, total_time, dt, time_integrator = 'Euler'):
+    def run(self, total_time, dt, time_integrator = 'LSERK4'):
 
         # Time extrapolation Nt steps
 
-        implemented_integrators = ('Euler', 'RK2')
+        implemented_integrators = ('Euler', 'RK2', 'LSERK4')
 
 
         if time_integrator == 'Euler':
             euler_integrator(self, total_time, dt, self.boundary_index)
-
+        elif time_integrator == 'RK2':
+            rk2_integrator(self, total_time, dt, self.boundary_index)
+        elif time_integrator == 'LSERK4': 
+            lserk4_integrator(self, total_time, dt, self.boundary_index)
         else:
             raise NotImplementedError(
                 f"{time_integrator} has not been implemented. Use one of {implemented_integrators}")

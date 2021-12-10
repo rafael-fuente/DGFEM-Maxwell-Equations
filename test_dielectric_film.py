@@ -41,7 +41,7 @@ sim.plot_fields(title = "t = 0")
 
 # run simulation 
 total_time   = 4
-nt = int(3000 * total_time)
+nt = int(500 * total_time)
 dt = total_time/nt
 sim.run(total_time, dt)
 sim.plot_fields(title = "t = 4")
@@ -51,7 +51,7 @@ sim.plot_fields(title = "t = 4")
 
 # run simulation 
 total_time   = 5
-nt = int(3000 * total_time)
+nt = int(500 * total_time)
 dt = total_time/nt
 sim.run(total_time, dt)
 sim.plot_fields(title = "t = 9")

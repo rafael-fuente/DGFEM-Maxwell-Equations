@@ -1,6 +1,11 @@
 import numpy as np
 from ..numerical_flux import flux
 
+"""
+Euler integrator use is discouraged, as it's outclassed by RK integrators in DGFEM both by the stability of the time step and performance, 
+especially when the integrator is run in parallel 
+"""
+
 def euler_integrator(sim, total_time, dt, boundary_index):
     # Time extrapolation Nt steps
 

@@ -27,9 +27,12 @@ def plot_fields(self, title = None, **kwargs):
     ax2.set_xlabel(' z [μm]')
 
 
-    
-    ax1.plot(self.z_center, self.ε / np.amax(self.ε), label = "ε")
-    ax2.plot(self.z_center, self.ε / np.amax(self.ε), label = "ε")
+    #plot ε at the vertices of each element
+    ε_vertex = np.outer(np.ones(2), self.ε).T.flatten() / np.amax(self.ε)
+    zpos_vertex = np.vstack((self.z[0 , :], self.z[self.Np , :])).T.flatten() 
+
+    ax1.plot(zpos_vertex, ε_vertex, label = "ε")
+    ax2.plot(zpos_vertex, ε_vertex, label = "ε")
     ax1.legend()
     ax2.legend()
     
