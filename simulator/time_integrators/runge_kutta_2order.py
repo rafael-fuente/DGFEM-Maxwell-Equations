@@ -24,7 +24,7 @@ def rk2_integrator(sim, total_time, dt, boundary_index):
 
 
     for iter in range(Nt):            
-        Flux = flux(sim.Ex, sim.Hy, sim.Np, sim.K, sim.ε, sim.𝜇, boundary_index)        
+        Flux = flux(sim.Ex, sim.Hy, sim.Np, sim.K, sim.Z, sim.Y, boundary_index)        
         # Extrapolate each element using flux F 
         
         k1_Ex = dt /(ε_ * J_) * ( - sim.Dr @ sim.Hy + sim.Minv @ (Flux[:,:,0] - σ_*sim.Ex))
@@ -35,7 +35,7 @@ def rk2_integrator(sim, total_time, dt, boundary_index):
         Hy_plus_k1 = sim.Hy + k1_Hy
 
 
-        Flux = flux(Ex_plus_k1, Hy_plus_k1, sim.Np, sim.K, sim.ε, sim.𝜇, boundary_index)  
+        Flux = flux(Ex_plus_k1, Hy_plus_k1, sim.Np, sim.K, sim.Z, sim.Y, boundary_index)  
 
         k2_Ex = dt /(ε_ * J_) * ( - sim.Dr @ Hy_plus_k1 + sim.Minv @ (Flux[:,:,0] - σ_*Ex_plus_k1))
         k2_Hy = dt /(𝜇_ * J_) * ( - sim.Dr @ Ex_plus_k1 + sim.Minv @ Flux[:,:,1])             

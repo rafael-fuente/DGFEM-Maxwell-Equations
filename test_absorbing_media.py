@@ -11,7 +11,7 @@ Np = 4 #polynomial order
 𝜇 = np.ones(K) 
 σ = np.ones(K)*0.01
 sim = Simulation1D(zpos_vertex, Np ,  ε, 𝜇 , σ,
-				   boundaries = 'perfect_conductor_boundaries')
+                   boundaries = 'perfect_conductor_boundaries')
 
 
 
@@ -19,12 +19,12 @@ sim = Simulation1D(zpos_vertex, Np ,  ε, 𝜇 , σ,
 
 #Set initial conditions
 def intial_fields(z):
-	sig    = 0.5*um
-	z0 = 5.0*um
+    sig    = 0.5*um
+    z0 = 5.0*um
 
-	Ex = np.exp(-1/sig**2*((z -z0))**2)
-	Hy = Ex*0
-	return Ex, Hy
+    Ex = np.exp(-1/sig**2*((z -z0))**2)
+    Hy = Ex*0
+    return Ex, Hy
 
 
 sim.set_initial_conditions(intial_fields)

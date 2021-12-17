@@ -67,8 +67,8 @@ import matplotlib.pyplot as plt
 
 fig = plt.figure()
 ax1 = fig.add_subplot()
-ax1.plot(sim.detectors[0].t, sim.detectors[0].Ex, label='Detector at 5 um')
-ax1.plot(sim.detectors[1].t, sim.detectors[1].Ex, label='Detector at 12 um')
+ax1.plot(sim.detectors[0].t, sim.detectors[0].Ex, label='Detector at 3 um')
+ax1.plot(sim.detectors[1].t, sim.detectors[1].Ex, label='Detector at 10 um')
 ax1.legend()
 ax1.set_xlabel(' t [um /c]')
 ax1.set_ylabel('$E_x$')

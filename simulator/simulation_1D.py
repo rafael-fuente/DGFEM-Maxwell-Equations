@@ -15,7 +15,10 @@ class Simulation1D:
         
         # physical parameters of the medium
         self.ε, self.𝜇 , self.σ = ε, 𝜇 , σ 
-        
+        self.Z = np.sqrt(self.𝜇/self.ε) # impedance
+        self.Y = 1/self.Z # admittance
+
+
         dz_k = np.diff(self.Vx) #length of each element
         
         

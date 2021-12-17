@@ -37,7 +37,7 @@ def lserk4_integrator(sim, total_time, dt, boundary_index):
         for i in range(5):
             # evaluate the five stages of lserk4
 
-            Flux = flux(sim.Ex, sim.Hy, sim.Np, sim.K, sim.ε, sim.𝜇, boundary_index) 
+            Flux = flux(sim.Ex, sim.Hy, sim.Np, sim.K, sim.Z, sim.Y, boundary_index) 
             k_Ex = rk4a[i]*k_Ex + dt /(ε_ * J_) * ( - sim.Dr @ sim.Hy + sim.Minv @ (Flux[:,:,0] - σ_*sim.Ex))
             k_Hy = rk4a[i]*k_Hy + dt /(𝜇_ * J_) * ( - sim.Dr @ sim.Ex + sim.Minv @ Flux[:,:,1])
               

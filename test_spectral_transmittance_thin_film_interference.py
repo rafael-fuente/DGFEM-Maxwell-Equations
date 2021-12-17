@@ -26,8 +26,8 @@ Np = 4 #polynomial order
 # dielectric film
 n_film = 1.5
 ε_film = n_film**2
-width_film = 0.5 * um
-ε[100 : (100 + int(width_film / dz)) ] = ε_film
+width_film = dz * 10
+ε[100 : (100 + 10)] = ε_film
 
 
 # set up the simulation

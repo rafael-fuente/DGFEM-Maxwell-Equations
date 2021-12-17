@@ -25,7 +25,7 @@ def euler_integrator(sim, total_time, dt, boundary_index):
         detector.init_detector(Nt, total_time)
 
     for iter in range(Nt):            
-        Flux = flux(sim.Ex, sim.Hy, sim.Np, sim.K, sim.ε, sim.𝜇, boundary_index)        
+        Flux = flux(sim.Ex, sim.Hy, sim.Np, sim.K, sim.Z, sim.Y, boundary_index)        
         # Extrapolate each element using flux F 
         
         tmp = ( - sim.Dr @ sim.Hy + sim.Minv @ (Flux[:,:,0] - σ_*sim.Ex))
