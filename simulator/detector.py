@@ -26,7 +26,7 @@ class Detector:
 
     def get_Ex_spectrum(self):
 
-        Ex_spectrum = np.fft.fftshift(np.fft.fft(  self.Ex   ))*self.dt /( np.exp(np.pi*1j * (np.arange(self.Nt)-self.Nt//2)))
+        Ex_spectrum = np.fft.fftshift(np.fft.fft(  self.Ex   ))*self.dt *( np.exp(np.pi*1j * (np.arange(self.Nt)-self.Nt//2)))
         f = np.fft.fftshift(np.fft.fftfreq(self.Nt, d = self.dt))
 
         return f, Ex_spectrum

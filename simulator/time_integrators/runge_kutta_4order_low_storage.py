@@ -25,6 +25,7 @@ def lserk4_integrator(sim, total_time, dt, boundary_index):
     𝜇_ = np.outer(np.ones(sim.Np+1), sim.𝜇)
     J_ = np.outer(np.ones(sim.Np+1), sim.J)
 
+    t = sim.t
 
     k_Ex = np.zeros([sim.Np+1, sim.K])
     k_Hy = np.zeros([sim.Np+1, sim.K])
@@ -38,7 +39,7 @@ def lserk4_integrator(sim, total_time, dt, boundary_index):
             # evaluate the five stages of lserk4
 
             Flux = flux(sim.Ex, sim.Hy, sim.Np, sim.K, sim.Z, sim.Y, boundary_index) 
-            k_Ex = rk4a[i]*k_Ex + dt /(ε_ * J_) * ( - sim.Dr @ sim.Hy + sim.Minv @ (Flux[:,:,0] - σ_*sim.Ex))
+            k_Ex = rk4a[i]*k_Ex + dt /(ε_ * J_) * ( - sim.Dr @ sim.Hy + sim.Minv @ (Flux[:,:,0] - σ_*sim.Ex  - sim.current_sources.get_current(t + rk4c[i]*dt)))
             k_Hy = rk4a[i]*k_Hy + dt /(𝜇_ * J_) * ( - sim.Dr @ sim.Ex + sim.Minv @ Flux[:,:,1])
               
             sim.Ex = sim.Ex+rk4b[i]*k_Ex
@@ -47,3 +48,7 @@ def lserk4_integrator(sim, total_time, dt, boundary_index):
 
         for detector in sim.detectors:
             detector.measure_fields(sim.Ex, sim.Hy, iter)
+
+        t += dt
+
+    sim.t = t

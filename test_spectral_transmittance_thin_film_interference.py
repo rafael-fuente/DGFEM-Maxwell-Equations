@@ -102,7 +102,7 @@ ax1 = fig.add_subplot()
 
 n1 = 1
 ax1.plot(λ, 1/((n1/n_film - n_film/n1)**2*np.sin(width_film*n_film*2*np.pi/λ)**2/4 + 1), label = 'analytical transmittance')
-ax1.plot(λ,  T , label = 'simulation transmittance')
+ax1.plot(λ,  T , "--", label = 'simulation transmittance')
 
 ax1.set_ylim([0.0, 1])
 ax1.set_xlim([0.3*um, 1.3*um])

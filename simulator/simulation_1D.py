@@ -2,11 +2,13 @@ import numpy as np
 from .polynomials.gll import gll
 from .polynomials.lagrange1st import lagrange1st
 import matplotlib.pyplot as plt
+from .current_sources import CurrentSources
+
 from .time_integrators import euler_integrator, rk2_integrator, lserk4_integrator
 
 
 class Simulation1D:
-    def __init__(self, zpos_vertex, Np , ε, 𝜇 , σ, boundaries = 'perfect_conductor_boundaries', detectors = []):
+    def __init__(self, zpos_vertex, Np , ε, 𝜇 , σ, boundaries = 'perfect_conductor_boundaries', detectors = [] , current_sources = CurrentSources([],[],[],[])):
         
         self.Np = Np #polynomial order
         self.Vx = zpos_vertex # z position of the vertices of the elements
@@ -97,7 +99,15 @@ class Simulation1D:
         
         self.detectors = detectors
 
+        # -----------------------------------------------------------------
 
+        # Sources
+
+        self.current_sources = current_sources
+        self.current_sources.init_sources(self)
+
+        # total time simulated
+        self.t = 0
 
 
     def set_initial_conditions(self, initial_fields_function):
